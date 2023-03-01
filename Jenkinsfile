@@ -4,6 +4,8 @@ pipeline {
         stage ("docker-deploy") {
             
             steps {
+                sh "cd /mnt/assign/httpd"
+
                 sh "git checkout RO1"
                 sh "docker run -itdp 92:80 --name RO1 httpd"
             
