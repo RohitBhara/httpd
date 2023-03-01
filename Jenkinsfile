@@ -1,12 +1,14 @@
 pipeline {
-  agent {
+    agent any 
     stages {
-      stage ("stage1") {
-        steps {
-          sh "docker cp /mnt/assign/httpd index.html 23Q2:/usr/local/apache2/htdocs/"
+        stage ("docker-deploy") {
+            
+            steps {
+                
+                sh "docker run -itdp 90:80 --name test1 httpd"
+            
+                sh "docker cp /mnt/assign/httpd/index.html test1:/usr/local/apache2/htdocs/"
+            }
         }
-      
-      }
     }
-  }
 }
